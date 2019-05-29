@@ -11,19 +11,20 @@ class List
 {
 public:
     List();
-    List(List<T>* some_list);
+    List(List<T>* other_list);
     //~List();
-    
-    //Adds an item to the specified position
+
+    //Adds an_item to the specified position
     void add(const T& an_item, int position);
 
     //Adds an item to the end of the list
     void append(const T& an_item);
+
     void remove(const T& an_item);
+
     void display() const;
     bool isEmpty() const;
     int getNumberOfItems() const;
-    void test(Node<T>* some_node) const;
 
 private:
     Node<T>* head_ptr_;

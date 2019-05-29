@@ -5,13 +5,14 @@ template<class T>
 Node<T>::Node()
 {
     next_ = nullptr;
+    previous_ = nullptr;
 }
 
 //***************************************Paramaterized Constructor**************************//
 template<class T>
 Node<T>::Node(const T& an_item)
 {
-    next_ = nullptr;
+    Node();
     item_ = an_item;
 }
 

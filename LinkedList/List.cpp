@@ -15,6 +15,9 @@ void List<T>::append(const T& an_item)
     new_node_ptr->setItem(an_item);
 
     isEmpty() ? insertFirstItem(new_node_ptr) : appendToTail(new_node_ptr);
+
+    tail_ptr_ = new_node_ptr;
+    item_count_++;
 }
 
 template<class T>
@@ -23,8 +26,7 @@ void List<T>::insertFirstItem(Node<T>* new_node_ptr)
     new_node_ptr->setNext(nullptr);
     new_node_ptr->setPrevious(nullptr);
     head_ptr_ = new_node_ptr;
-    tail_ptr_ = new_node_ptr;
-    item_count_++;
+
 }
 
 template<class T>
@@ -33,8 +35,6 @@ void List<T>::appendToTail(Node<T>* new_node_ptr)
     new_node_ptr->setNext(nullptr);
     new_node_ptr->setPrevious(tail_ptr_);
     tail_ptr_->setNext(new_node_ptr);
-    tail_ptr_ = new_node_ptr;
-    item_count_++;
 }
 
 template<class T>
@@ -65,4 +65,10 @@ template<class T>
 int List<T>::getNumberOfItems() const
 {
     return item_count_;
+}
+
+template<class T>
+void List<T>::add(const T& an_item, int position)
+{
+
 }
