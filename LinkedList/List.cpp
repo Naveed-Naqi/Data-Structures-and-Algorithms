@@ -76,17 +76,13 @@ void List<T>::insert(const T& an_item, int position)
     {
         Node<T>* new_node_ptr = new Node<T>(an_item);
 
-        if(isEmpty())
+        if(isEmpty() || position == item_count_)
         {
-            insertFirstItem(new_node_ptr);
+            append(an_item);
         }
         else if (position == 0)
         {
             insertAtHead(new_node_ptr);
-        }
-        else if (position == item_count_)
-        {
-            appendToEnd(new_node_ptr);
         }
         else
         {
