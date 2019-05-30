@@ -20,7 +20,7 @@ public:
     //Adds an item to the end of the list
     void append(const T& an_item);
 
-    //remove the first occurence of an_item
+    //remove the item at given position
     void remove(const int position);
 
     void display() const;
