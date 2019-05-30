@@ -7,7 +7,7 @@ class Node
 
 public:
     Node();
-
+    
     //Parameterized Constructor
     Node(const T& an_item);
     void setItem(const T& an_item);

@@ -34,8 +34,7 @@ private:
     //insert and append helper functions
     void appendToEnd(Node<T>* new_node_ptr);
     void insertFirstItem(Node<T>* new_node_ptr);
-    void insertAtBeginning(Node<T>* new_node_ptr);
-    void insertAtEnd(Node<T>* new_node_ptr);
+    void insertAtHead(Node<T>* new_node_ptr);
     void insert(Node<T>* new_node_ptr, const int position);
 
     //helps optimize the insert function

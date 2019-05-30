@@ -13,7 +13,7 @@ void List<T>::append(const T& an_item)
 {
     Node<T>* new_node_ptr = new Node<T>(an_item);
 
-    isEmpty() ? insertFirstItem(new_node_ptr) : insertAtEnd(new_node_ptr);
+    isEmpty() ? insertFirstItem(new_node_ptr) : appendToEnd(new_node_ptr);
 }
 
 template<class T>
@@ -27,12 +27,13 @@ void List<T>::insertFirstItem(Node<T>* new_node_ptr)
 }
 
 template<class T>
-void List<T>::insertAtEnd(Node<T>* new_node_ptr)
+void List<T>::appendToEnd(Node<T>* new_node_ptr)
 {     
     new_node_ptr->setNext(nullptr);
     new_node_ptr->setPrevious(tail_ptr_);
     tail_ptr_->setNext(new_node_ptr);
     tail_ptr_ = new_node_ptr;
+    item_count_++;
 }
 
 template<class T>
@@ -68,49 +69,52 @@ int List<T>::getNumberOfItems() const
 template<class T>
 void List<T>::insert(const T& an_item, int position)
 {
-    Node<T>* new_node_ptr = new Node<T>(an_item);
 
     //use exception handling here to make sure the position is valid
 
     if(position < item_count_+1)
     {
+        Node<T>* new_node_ptr = new Node<T>(an_item);
+
         if(isEmpty())
         {
             insertFirstItem(new_node_ptr);
         }
         else if (position == 0)
         {
-            insertAtBeginning(new_node_ptr);
+            insertAtHead(new_node_ptr);
         }
         else if (position == item_count_)
         {
-            insertAtEnd(new_node_ptr);
-        }  
+            appendToEnd(new_node_ptr);
+        }
         else
         {
             insert(new_node_ptr, position);
-        }
+        } 
     }
 }
 
 template<class T>
-void List<T>::insertAtBeginning(Node<T>* new_node_ptr)
+void List<T>::insertAtHead(Node<T>* new_node_ptr)
 {
     head_ptr_->setPrevious(new_node_ptr);
     new_node_ptr->setNext(head_ptr_);
     head_ptr_ = new_node_ptr;
+    item_count_++;
 }
-
 template<class T>
 void List<T>::insert(Node<T>* new_node_ptr, const int position)
 {
     Node<T>* temp_ptr = getPointerToPosition(position);
+
     temp_ptr->getPrevious()->setNext(new_node_ptr);
-    temp_ptr->getNext()->setPrevious(new_node_ptr);
     new_node_ptr->setPrevious(temp_ptr->getPrevious());
-    new_node_ptr->setNext(temp_ptr->getNext());
+    temp_ptr->setPrevious(new_node_ptr);
+    new_node_ptr->setNext(temp_ptr);
 
     temp_ptr = nullptr;
+    item_count_++;
 }
 
 template<class T>
