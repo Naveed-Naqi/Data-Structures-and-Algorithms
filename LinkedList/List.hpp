@@ -1,5 +1,5 @@
-#ifndef LIST_H_
-#define LIST_H_
+#ifndef _LIST_H_
+#define _LIST_H_
 
 #include "Node.hpp"
 #include <iostream>
@@ -14,8 +14,8 @@ public:
     List(List<T>* other_list);
     //~List();
 
-    //Adds an_item to the specified position
-    void add(const T& an_item, int position);
+    //Adds an_item to the specified position, first item is at position 0 and so on
+    void insert(const T& an_item, int position);
 
     //Adds an item to the end of the list
     void append(const T& an_item);
@@ -31,9 +31,18 @@ private:
     Node<T>* tail_ptr_;
     int item_count_;
 
-    //add and append helper functions
-    void appendToTail(Node<T>* new_node_ptr);
+    //insert and append helper functions
+    void appendToEnd(Node<T>* new_node_ptr);
     void insertFirstItem(Node<T>* new_node_ptr);
+    void insertAtBeginning(Node<T>* new_node_ptr);
+    void insertAtEnd(Node<T>* new_node_ptr);
+    void insert(Node<T>* new_node_ptr, const int position);
+
+    //helps optimize the insert function
+    bool isGreaterThanMedian(const int position) const;
+    Node<T>* getPointerToPosition(const int position) const;
+    Node<T>* traverseFromTailToPosition(const int position) const;
+    Node<T>* traverseFromHeadToPosition(const int position) const;
 };
 
 #include "List.cpp"
