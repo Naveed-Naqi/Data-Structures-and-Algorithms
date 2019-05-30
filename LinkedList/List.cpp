@@ -157,5 +157,70 @@ Node<T>* List<T>::traverseFromHeadToPosition(const int position) const
     return temp_ptr;
 }
 
+template<class T>
+void List<T>::remove(const int position)
+{
+    if(position == 0)
+    {
+        removeFromHead(position);
+    }
+    else if (position == item_count_-1)
+    {
+        removeFromTail(position);
+    }
+    else
+    {
+        removeFromMiddle(position);
+    }
+}
+
+template<class T>
+void List<T>::removeFromHead(const int position)
+{
+    Node<T>* temp_ptr = head_ptr_;
+
+    head_ptr_ = head_ptr_->getNext();
+    head_ptr_->setPrevious(nullptr);
+
+    temp_ptr->setNext(nullptr);
+    temp_ptr->setPrevious(nullptr);
+    delete temp_ptr;
+    temp_ptr = nullptr;
+
+    item_count_--;
+}
+
+template<class T>
+void List<T>::removeFromTail(const int position)
+{
+    Node<T>* temp_ptr = tail_ptr_;
+
+    tail_ptr_ = tail_ptr_->getPrevious();
+    tail_ptr_->setNext(nullptr);
+
+    temp_ptr->setNext(nullptr);
+    temp_ptr->setPrevious(nullptr);
+    delete temp_ptr;
+    temp_ptr = nullptr;
+
+    item_count_--;
+}
+
+template<class T>
+void List<T>::removeFromMiddle(const int position)
+{
+    Node<T>* temp_ptr = getPointerToPosition(position);
+
+    temp_ptr->getPrevious()->setNext(temp_ptr->getNext());
+    temp_ptr->getNext()->setPrevious(temp_ptr->getPrevious());
+
+    temp_ptr->setNext(nullptr);
+    temp_ptr->setPrevious(nullptr);
+    delete temp_ptr;
+    temp_ptr = nullptr;
+
+    item_count_--;
+}
+
 
 

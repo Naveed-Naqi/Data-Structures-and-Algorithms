@@ -20,7 +20,8 @@ public:
     //Adds an item to the end of the list
     void append(const T& an_item);
 
-    void remove(const T& an_item);
+    //remove the first occurence of an_item
+    void remove(const int position);
 
     void display() const;
     bool isEmpty() const;
@@ -36,6 +37,11 @@ private:
     void insertFirstItem(Node<T>* new_node_ptr);
     void insertAtHead(Node<T>* new_node_ptr);
     void insert(Node<T>* new_node_ptr, const int position);
+
+    //remove helper functions
+    void removeFromHead(const int positon);
+    void removeFromTail(const int position);
+    void removeFromMiddle(const int position);
 
     //helps optimize the insert function
     bool isGreaterThanMedian(const int position) const;

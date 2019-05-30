@@ -16,8 +16,6 @@ Node<T>::Node(const T& an_item)
     item_ = an_item;
 }
 
-//***************************************Copy Constructor**************************//
-
 //***************************************Setters**************************//
 template<class T>
 void Node<T>::setItem(const T &an_item)
