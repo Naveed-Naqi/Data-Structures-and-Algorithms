@@ -12,10 +12,11 @@ class List
 public:
     List();
     List(List<T>* other_list);
-    //~List();
+
+    ~List();
 
     //Adds an_item to the specified position, first item is at position 0 and so on
-    void insert(const T& an_item, int position);
+    void insert(const T& an_item, const int position);
 
     //Adds an item to the end of the list
     void append(const T& an_item);
@@ -36,7 +37,7 @@ private:
     void appendToEnd(Node<T>* new_node_ptr);
     void insertFirstItem(Node<T>* new_node_ptr);
     void insertAtHead(Node<T>* new_node_ptr);
-    void insert(Node<T>* new_node_ptr, const int position);
+    void insertInMiddle(Node<T>* new_node_ptr, const int position);
 
     //remove helper functions
     void removeFromHead(const int positon);

@@ -9,6 +9,25 @@ List<T>::List()
 }
 
 template<class T>
+List<T>::~List()
+{
+    Node<T>* temp_ptr = head_ptr_;
+
+    while (head_ptr_ != nullptr)
+    {
+        head_ptr_ = head_ptr_->getNext();
+
+        temp_ptr->setNext(nullptr);
+        temp_ptr->setPrevious(nullptr);
+        delete temp_ptr;
+
+        temp_ptr = head_ptr_;   
+    }
+
+    item_count_ = 0; 
+}
+
+template<class T>
 void List<T>::append(const T& an_item)
 {
     Node<T>* new_node_ptr = new Node<T>(an_item);
@@ -67,7 +86,7 @@ int List<T>::getNumberOfItems() const
 }
 
 template<class T>
-void List<T>::insert(const T& an_item, int position)
+void List<T>::insert(const T& an_item, const int position)
 {
 
     //use exception handling here to make sure the position is valid
@@ -86,7 +105,7 @@ void List<T>::insert(const T& an_item, int position)
         }
         else
         {
-            insert(new_node_ptr, position);
+            insertInMiddle(new_node_ptr, position);
         } 
     }
 }
@@ -100,7 +119,7 @@ void List<T>::insertAtHead(Node<T>* new_node_ptr)
     item_count_++;
 }
 template<class T>
-void List<T>::insert(Node<T>* new_node_ptr, const int position)
+void List<T>::insertInMiddle(Node<T>* new_node_ptr, const int position)
 {
     Node<T>* temp_ptr = getPointerToPosition(position);
 
@@ -108,7 +127,7 @@ void List<T>::insert(Node<T>* new_node_ptr, const int position)
     new_node_ptr->setPrevious(temp_ptr->getPrevious());
     temp_ptr->setPrevious(new_node_ptr);
     new_node_ptr->setNext(temp_ptr);
-
+    
     temp_ptr = nullptr;
     item_count_++;
 }
