@@ -5,7 +5,6 @@
 void selectionSort(int* arr, std::size_t size);
 void swap(int* arr, int some_index, int other_index);
 int findMinIndex(int* arr, int starting_index, std::size_t size);
-void convertToLowerCase(std::string& some_word);
 
 void selectionSort(int* arr, std::size_t size)
 {
